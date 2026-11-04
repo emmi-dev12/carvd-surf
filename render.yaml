@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: carvd-surf
+    runtime: static
+    staticPublishPath: .
+    buildCommand: base64 -d hero-board.webp.b64 > hero-board.webp
+    headers:
+      - path: /*
+        name: X-Robots-Tag
+        value: noindex, nofollow
+    routes:
+      - type: rewrite
+        source: /start
+        destination: /start.html
+      - type: rewrite
+        source: /faq
+        destination: /faq.html
+      - type: rewrite
+        source: /construction
+        destination: /construction.html
