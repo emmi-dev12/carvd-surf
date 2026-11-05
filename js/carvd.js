@@ -1,7 +1,7 @@
 /* carvd. surf preview: i18n, menu, start form */
 (()=>{
 const DE={skip:'zum inhalt',nav_home:'home',nav_boards:'boards',nav_brands:'für brands',nav_construct:'bauweise',nav_faq:'faq',nav_start:'board starten',
-catch:'carvd: branded boards, gemacht fürs wasser',snow_link:'back to carvd. →',
+catch:'carvd: branded boards, gemacht fürs wasser',snow_link:'zurück zu carvd. →',
 hero_a1:'branded boards,',hero_a2:'gemacht fürs wasser.',hero_lede:'surfboards nach mass, mit deinem logo auf dem deck. du wählst den shape, wir den aufbau.',hero_see:'zu den boards',
 boards_k:'surfboards',boards_h2:'dein shape. deine welle.',boards_p:'shortboard, fish, midlength oder longboard. du wählst shape und länge und bringst die grafik. den rest machen wir.',
 w1_h:'der shape, der zu dir passt',w1_p:'shortboard, fish, midlength, longboard. nimm den, der zu deinen wellen passt.',
@@ -64,8 +64,7 @@ if(bur&&mm){const set=o=>{mm.hidden=!o;bur.setAttribute('aria-expanded',o);docum
 const form=document.querySelector('form[data-carvd-form]');if(!form)return;
 const W3='https://api.web3forms.com/submit',FS='https://formsubmit.co/ajax/custom%2Borders'+'@carvdboards.com',ORDERS='https://orders.carvd.workers.dev/api/intake';
 const de=()=>document.documentElement.lang==='de';
-const T={en:{sending:'sending…',fail:'sorry, sending did not work. please send it to us by email instead:',btn:'open email'},de:{
-snow_link:'zurück zu carvd. →',sending:'wird gesendet…',fail:'sorry, das senden hat nicht geklappt. schick uns deine anfrage bitte per e-mail:',btn:'e-mail öffnen'}};
+const T={en:{sending:'sending…',fail:'sorry, sending did not work. please send it to us by email instead:',btn:'open email'},de:{sending:'wird gesendet…',fail:'sorry, das senden hat nicht geklappt. schick uns deine anfrage bitte per e-mail:',btn:'e-mail öffnen'}};
 const post=(url,body)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);
  return fetch(url,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body),signal:c.signal})
  .then(r=>r.json().then(j=>{if(!r.ok||!(j.success===true||j.success==='true'))throw new Error('fail');return j})).finally(()=>clearTimeout(t))};
