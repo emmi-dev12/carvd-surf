@@ -1,8 +1,8 @@
 /* carvd. surf preview: i18n, menu, start form */
 (()=>{
 const DE={skip:'zum inhalt',nav_home:'home',nav_boards:'boards',nav_brands:'für brands',nav_construct:'bauweise',nav_faq:'faq',nav_start:'board starten',
-catch:'carvd: boards mit deinem design, gemacht fürs wasser',snow_link:'snowboards →',
-hero_a1:'boards mit deinem design,',hero_a2:'gemacht fürs wasser.',hero_lede:'surfboards nach mass, mit deinem logo auf dem deck. du wählst den shape, wir den aufbau.',hero_see:'zu den boards',
+catch:'carvd: branded boards, gemacht fürs wasser',snow_link:'snowboards →',
+hero_a1:'branded boards,',hero_a2:'gemacht fürs wasser.',hero_lede:'surfboards nach mass, mit deinem logo auf dem deck. du wählst den shape, wir den aufbau.',hero_see:'zu den boards',
 boards_k:'surfboards',boards_h2:'dein shape. deine welle.',boards_p:'shortboard, fish, midlength oder longboard. du wählst shape und länge und bringst die grafik. den rest machen wir.',
 w1_h:'der shape, der zu dir passt',w1_p:'shortboard, fish, midlength, longboard. nimm den, der zu deinen wellen passt.',
 w2_h:'die länge, die sitzt',w2_p:'sag uns die länge, oder grösse, gewicht und level. wir helfen dir, sie zu finden.',
@@ -15,12 +15,12 @@ cta_h2:'wähl den shape. den rest shapen wir.',cta_p:'ein board oder eine kleine
 faq_h1:'fragen.',faq_lede:'die fakten zu einer bestellung nach mass. noch unsicher? nutz das <a class="inline" href="/start.html">startformular</a>.',
 con_k:'bauweise',con_h1:'du wählst die welle, wir den aufbau.',con_lede:'ein board nach mass ist kein sticker auf einem blank. wir wählen schaum, harz und glas passend zu shape und ride.',
 c_pick_h:'wir wählen den aufbau',c_pick_p:'du wählst shape und länge. wir wählen die bauweise, die zum board, zu den wellen und zu deinem surfen passt.',
-c_pu_h:'pu / polyester',c_pu_p:'der klassiker: ein polyurethan-blank mit holz-stringer, laminiert mit polyesterharz. ein flex und feel, den viele surfer kennen. schwerer und schneller mit dings als epoxy.',
+c_pu_h:'pu / polyester',c_pu_p:'der klassiker: pu-blank mit holz-stringer, laminiert mit polyester. der flex und das feel, das die meisten kennen.',
 c_eps_h:'eps / epoxy',c_eps_p:'ein kern aus expandiertem polystyrol, laminiert mit epoxidharz. leichter, mehr auftrieb, lebendiges feel. paddelt leicht, und die schale hält dings meist besser aus.',
 c_str_h:'stringer',c_str_p:'ein holz-stringer in der mitte gibt steifigkeit und steuert den flex. manche eps-boards setzen auf andere layouts, etwa carbon entlang der rails.',
-c_carb_h:'carbon',c_carb_p:'carbon-streifen, patches oder tape geben steifigkeit und festigkeit, wo das board last nimmt. dort eingesetzt, wo der ride es braucht, nicht als deko.',
+c_carb_h:'verstärkung',c_carb_p:'verstärkung nur dort, wo das board last nimmt und der ride es braucht. wir bestätigen es in der offerte.',
 c_glass_h:'laminat',c_glass_p:'die glasfaserlagen auf deck und bottom bestimmen, wie robust und wie schwer ein board ist. schwerer für flotten und verleih, leichter für performance.',
-c_fins_h:'finnen',c_fins_p:'finnenboxen für gängige systeme, passend zum shape: thruster, quad, twin oder single.',
+c_fins_h:'finnen',c_fins_p:'finnen-setup passend zum shape: thruster, quad, twin oder single. das boxensystem bestätigen wir in der offerte.',
 c_art_h:'grafik',c_art_p:'dein artwork auf deck und bottom, unter dem laminat oder gesprayt. vor der produktion bekommst du einen proof.',
 g_board:'das board',g_design:'design',g_order:'bestellung',
 f_custom_h:'was macht es custom?',f_custom_p:'jedes board wird für seine bestellung gemacht. keine lagerboards.',
@@ -43,7 +43,7 @@ const q=s=>[...document.querySelectorAll(s)];
 q('[data-i18n]').forEach(e=>EN[e.dataset.i18n]=e.textContent);
 q('[data-i18n-html]').forEach(e=>EN[e.dataset.i18nHtml]=e.innerHTML);
 q('[data-i18n-placeholder]').forEach(e=>EN[e.dataset.i18nPlaceholder]=e.placeholder);
-const ttl=document.title,TDE={'carvd: branded boards meant to be surfed':'carvd: boards mit deinem design, gemacht fürs wasser'};
+const ttl=document.title,TDE={'carvd: branded boards meant to be surfed':'carvd: branded boards, gemacht fürs wasser'};
 function apply(l){const d=l==='de'?DE:EN;document.documentElement.lang=l;
  q('[data-i18n]').forEach(e=>{const v=d[e.dataset.i18n];if(v!=null)e.textContent=v});
  q('[data-i18n-html]').forEach(e=>{const v=d[e.dataset.i18nHtml];if(v!=null)e.innerHTML=v});
