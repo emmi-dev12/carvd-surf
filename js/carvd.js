@@ -15,8 +15,8 @@ cta_h2:'wähl den shape. den rest shapen wir.',cta_p:'ein board oder eine kleine
 faq_h1:'fragen.',faq_lede:'die fakten zu einer bestellung nach mass. noch unsicher? nutz das <a class="inline" href="/start.html">startformular</a>.',
 con_k:'bauweise',con_h1:'du wählst die welle, wir den aufbau.',con_lede:'ein board nach mass ist kein sticker auf einem blank. wir wählen kern und aufbau passend zu shape und ride.',
 c_pick_h:'wir wählen den aufbau',c_pick_p:'du wählst shape und länge. wir wählen die bauweise, die zum board, zu den wellen und zu deinem surfen passt.',
-c_pu_h:'pu-kern',c_pu_p:'ein pu-schaumkern, per cnc auf den outline geshapt.',
-c_eps_h:'eps / epoxy',c_eps_p:'ein handgeshapter eps-kern mit harter epoxy-unterseite. leicht, und concaves, rocker, flex und rails bleiben performance.',
+c_pu_h:'pu-kern',c_pu_p:'ein pu-schaumkern.',
+c_eps_h:'eps / epoxy',c_eps_p:'ein handgeshapter eps-kern mit harter epoxy-unterseite. leicht, und du behältst performance-concaves, rocker, flex und rails.',
 c_str_h:'bambus-inlay',c_str_p:'ein bambus-inlay im deck gibt festigkeit, wo die meisten schläge landen.',
 
 c_glass_h:'soft-aufbau',c_glass_p:'für schulen und verleih: soft-eva-deck und rails über einem eps-kern, mit softer oder harter epoxy-unterseite. kein wachs nötig.',
