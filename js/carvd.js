@@ -1,8 +1,8 @@
 /* carvd. surf preview: i18n, menu, start form */
 (()=>{
 const DE={skip:'zum inhalt',nav_home:'home',nav_boards:'boards',nav_brands:'für brands',nav_construct:'bauweise',nav_faq:'faq',nav_start:'board starten',
-catch:'carvd: branded boards, gemacht fürs wasser',snow_link:'snowboards →',
-hero_a1:'branded boards,',hero_a2:'gemacht fürs wasser.',hero_lede:'surfboards nach mass, mit deinem logo auf dem deck. du wählst den shape, wir den aufbau.',hero_see:'zu den boards',
+catch:'carvd: boards mit deinem design, gemacht fürs wasser',snow_link:'snowboards →',
+hero_a1:'boards mit deinem design,',hero_a2:'gemacht fürs wasser.',hero_lede:'surfboards nach mass, mit deinem logo auf dem deck. du wählst den shape, wir den aufbau.',hero_see:'zu den boards',
 boards_k:'surfboards',boards_h2:'dein shape. deine welle.',boards_p:'shortboard, fish, midlength oder longboard. du wählst shape und länge und bringst die grafik. den rest machen wir.',
 w1_h:'der shape, der zu dir passt',w1_p:'shortboard, fish, midlength, longboard. nimm den, der zu deinen wellen passt.',
 w2_h:'die länge, die sitzt',w2_p:'sag uns die länge, oder grösse, gewicht und level. wir helfen dir, sie zu finden.',
@@ -43,7 +43,7 @@ const q=s=>[...document.querySelectorAll(s)];
 q('[data-i18n]').forEach(e=>EN[e.dataset.i18n]=e.textContent);
 q('[data-i18n-html]').forEach(e=>EN[e.dataset.i18nHtml]=e.innerHTML);
 q('[data-i18n-placeholder]').forEach(e=>EN[e.dataset.i18nPlaceholder]=e.placeholder);
-const ttl=document.title,TDE={'carvd: branded boards meant to be surfed':'carvd: branded boards, gemacht fürs wasser'};
+const ttl=document.title,TDE={'carvd: branded boards meant to be surfed':'carvd: boards mit deinem design, gemacht fürs wasser'};
 function apply(l){const d=l==='de'?DE:EN;document.documentElement.lang=l;
  q('[data-i18n]').forEach(e=>{const v=d[e.dataset.i18n];if(v!=null)e.textContent=v});
  q('[data-i18n-html]').forEach(e=>{const v=d[e.dataset.i18nHtml];if(v!=null)e.innerHTML=v});
