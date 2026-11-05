@@ -432,14 +432,14 @@ body.oa{--acc:#1E6BFF;--fg:#fff;--mute:#a3a3a3;--line:#262626;--cardA:#121212;ba
 .oa section:has(>.glow-soft){position:relative;overflow:clip}
 .oa section:has(>.glow-soft)>.wrap{position:relative;z-index:1}
 .oa .glow-soft{position:absolute;width:0;height:0;pointer-events:none;z-index:0}
-.oa .glow-soft::before{width:520px;height:520px;left:-260px;top:-260px;background:radial-gradient(circle,color-mix(in srgb,var(--carvd-primary) 16%,transparent),transparent 68%);filter:blur(30px)}
+.oa .glow-soft::before{width:520px;height:520px;left:-260px;top:-260px;background:radial-gradient(circle,color-mix(in srgb,var(--carvd-primary) 14%,transparent),transparent 68%);filter:blur(30px)}
 @media(max-width:860px){.oa .glow-soft::before{width:340px;height:340px;left:-170px;top:-170px}}
 @media(max-width:860px){.oa .board-stage{overflow:visible}.oa .board{clip-path:inset(50px 0)}.oa .board-stage::before{inset:-60% -5%;filter:blur(36px)}}
 .oa .ahero{isolation:isolate}.oa .board-stage::before{z-index:-1}
 /* surf overrides */
 .oa .board{background:none;transform:none;filter:drop-shadow(0 0 1px rgba(30,107,255,.35))}
 @media(max-width:860px){.oa .board{transform:rotate(78deg)}}
-.oa .board-stage::before{background:radial-gradient(closest-side,color-mix(in srgb,var(--carvd-primary) 38%,transparent),transparent)}
+.oa .board-stage::before{background:radial-gradient(closest-side,color-mix(in srgb,var(--carvd-primary) 33%,transparent),transparent)}
 .start-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:600px){.start-row{grid-template-columns:1fr}}
 @media(max-width:860px){.oa .board{clip-path:none;height:260px}.oa .board-stage{height:150px}}
