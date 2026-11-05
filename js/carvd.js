@@ -91,3 +91,43 @@ form.addEventListener('submit',async e=>{
  a.href='mailto:'+['custom','carvdboards.com'].join('@')+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
  box.append(p,a);form.after(box)});
 })();
+
+/* carvd glossary: hover/tap/focus definitions; strings are i18n (gl_*) */
+(()=>{
+const GL_I18N={"en": {"gl_shape": "the board's outline and form", "gl_fish": "short, wide board with split tail for small waves", "gl_midlength": "between shortboard and longboard: paddles easy, still turns", "gl_blank": "the foam block a board is shaped from", "gl_pu": "polyurethane foam, the classic surfboard core", "gl_eps": "expanded polystyrene foam: lighter and floatier than pu", "gl_epoxy": "tough resin that seals the core", "gl_concaves": "channels under the board that steer water for speed", "gl_rocker": "the curve of the board from nose to tail", "gl_flex": "how much the board bends and springs back", "gl_rails": "the board's side edges", "gl_inlay": "thin bamboo layer in the deck for strength", "gl_eva": "soft, grippy foam rubber: no wax needed", "gl_futures": "a common fin box system: fins slide in, screw tight"}, "de": {"gl_shape": "umriss und form des boards", "gl_fish": "kurzes, breites board mit split-tail für kleine wellen", "gl_midlength": "zwischen short- und longboard: paddelt leicht, dreht trotzdem", "gl_blank": "der schaumblock, aus dem das board entsteht", "gl_pu": "polyurethan-schaum, der klassische surfboard-kern", "gl_eps": "expandiertes polystyrol: leichter, mehr auftrieb als pu", "gl_epoxy": "robustes harz, das den kern versiegelt", "gl_concaves": "mulden unter dem board, lenken wasser für mehr speed", "gl_rocker": "die biegung des boards von nose bis tail", "gl_flex": "wie stark das board sich biegt und zurückfedert", "gl_rails": "die seitenkanten des boards", "gl_inlay": "dünne bambusschicht im deck für mehr festigkeit", "gl_eva": "weicher, griffiger schaumgummi: kein wachs nötig", "gl_futures": "verbreitetes finnenboxen-system: finne einschieben, festschrauben"}};
+const TERMS=[{"k": "shape", "re": "shape"}, {"k": "fish", "re": "fish"}, {"k": "midlength", "re": "midlength"}, {"k": "blank", "re": "blank"}, {"k": "pu", "re": "pu"}, {"k": "eps", "re": "eps"}, {"k": "epoxy", "re": "epoxy"}, {"k": "concaves", "re": "concaves"}, {"k": "rocker", "re": "rocker"}, {"k": "flex", "re": "flex"}, {"k": "rails", "re": "rails"}, {"k": "inlay", "re": "bamboo deck inlay|bambus-inlay"}, {"k": "eva", "re": "eva"}, {"k": "futures", "re": "futures"}];
+const css=document.createElement('style');css.textContent=`.gl{border-bottom:1px dotted #1E6BFF;cursor:help;outline:none;border-radius:2px}.gl:focus-visible{box-shadow:0 0 0 2px #1E6BFF}#gl-tip{position:fixed;z-index:9999;max-width:min(260px,calc(100vw - 16px));background:#141414;color:#f2f2f2;border:1px solid rgba(255,255,255,.12);border-left:3px solid #1E6BFF;border-radius:10px;padding:8px 11px;font-size:13px;line-height:1.35;font-weight:400;text-transform:none;letter-spacing:0;box-shadow:0 8px 24px rgba(0,0,0,.45);pointer-events:none;opacity:0;transition:opacity .12s}#gl-tip.on{opacity:1}`;document.head.appendChild(css);
+const tip=document.createElement('div');tip.id='gl-tip';tip.setAttribute('role','tooltip');document.body.appendChild(tip);
+let cur=null;
+const L=()=>document.documentElement.lang==='de'?'de':'en';
+function show(el){cur=el;tip.textContent=GL_I18N[L()]['gl_'+el.dataset.gl]||'';el.setAttribute('aria-describedby','gl-tip');tip.classList.add('on');
+ const r=el.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight,vw=document.documentElement.clientWidth;
+ let x=Math.min(Math.max(8,r.left+r.width/2-w/2),vw-w-8),y=r.top-h-8;if(y<8)y=r.bottom+8;tip.style.left=x+'px';tip.style.top=y+'px'}
+function hide(){if(cur)cur.removeAttribute('aria-describedby');cur=null;tip.classList.remove('on')}
+const SKIP='a,button,nav,header,footer,select,option,label,form,.gl,#gl-tip,script,style';
+function wrap(){
+ document.querySelectorAll('.gl').forEach(s=>s.replaceWith(document.createTextNode(s.textContent)));
+ const seen=new Map();
+ document.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(el=>{
+  if(el.closest(SKIP))return;
+  const sec=el.closest('section')||el.closest('main')||document.body;if(!seen.has(sec))seen.set(sec,new Set());const S=seen.get(sec);
+  const tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);const nodes=[];while(tw.nextNode())nodes.push(tw.currentNode);
+  nodes.forEach(n=>{if(n.parentElement.closest(SKIP))return;
+   while(n&&n.nodeType===3){let best=null;
+    for(const t of TERMS){if(S.has(t.k))continue;const m=new RegExp('(^|[^a-zäöü0-9])('+t.re+')(?![a-zäöü0-9])','i').exec(n.data);if(m&&(!best||m.index+m[1].length<best.i))best={t,i:m.index+m[1].length,len:m[2].length}}
+    if(!best)break;S.add(best.t.k);const after=n.splitText(best.i);after.splitText(best.len);
+    const s=document.createElement('span');s.className='gl';s.tabIndex=0;s.dataset.gl=best.t.k;s.textContent=after.data;after.replaceWith(s);n=s.nextSibling}
+  });
+ });
+}
+document.addEventListener('mouseover',e=>{const g=e.target.closest&&e.target.closest('.gl');if(g)show(g)});
+document.addEventListener('mouseout',e=>{const g=e.target.closest&&e.target.closest('.gl');if(g&&!g.contains(e.relatedTarget)&&document.activeElement!==g)hide()});
+document.addEventListener('focusin',e=>{const g=e.target.closest&&e.target.closest('.gl');if(g)show(g)});
+document.addEventListener('focusout',e=>{if(e.target.closest&&e.target.closest('.gl'))hide()});
+document.addEventListener('click',e=>{const g=e.target.closest&&e.target.closest('.gl');if(g){g.focus();show(g)}else hide()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});
+addEventListener('scroll',hide,{passive:true});
+const run=()=>{hide();wrap()};
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setTimeout(run,0)));
+run();window.__carvdGlossary=run;
+})();
